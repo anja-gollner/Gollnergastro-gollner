@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "nuxt dev",
     "dev:clean": "rm -rf .nuxt node_modules/.vite node_modules/.cache && nuxt dev",
+    "vorschau": "nuxt generate && php -S localhost:8080 -t .output/public",
     "build": "nuxt build",
     "generate": "nuxt generate",
     "preview": "nuxt preview",

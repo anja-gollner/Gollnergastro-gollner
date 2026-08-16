@@ -1,5 +1,5 @@
 <?php
-// Gemeinsame Basis für alle API-Endpunkte des Schildbacherhof-CMS.
+// Gemeinsame Basis für alle API-Endpunkte des Gollner-Gastro-CMS.
 declare(strict_types=1);
 
 if (session_status() === PHP_SESSION_NONE) {

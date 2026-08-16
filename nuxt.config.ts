@@ -1,8 +1,33 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { mkdirSync, writeFileSync } from 'node:fs'
+import { BETRIEB } from './composables/useBetrieb'
+
+// Das CMS zeigt bei den Basisdaten an, was gilt, solange nichts überschrieben
+// ist. Diese Ausgangswerte werden hier beim Bauen aus useBetrieb.ts
+// herausgeschrieben, statt sie im CMS ein zweites Mal einzutragen — sonst
+// stünde irgendwann im CMS eine andere Telefonnummer als auf der Website,
+// und genau diese Sorte Fehler soll useBetrieb.ts ja verhindern.
+function vorgabeSchreiben() {
+  const daten = {
+    telefon: BETRIEB.telefon,
+    telefonRoh: BETRIEB.telefonRoh,
+    email: BETRIEB.email,
+    adresse: {
+      strasse: BETRIEB.adresse.strasse,
+      plz: BETRIEB.adresse.plz,
+      ort: BETRIEB.adresse.ort
+    },
+    social: Object.fromEntries(BETRIEB.social.map(s => [s.name, s.url]))
+  }
+  mkdirSync('public/api', { recursive: true })
+  writeFileSync('public/api/vorgabe.json', JSON.stringify(daten, null, 2) + '\n')
+}
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-01-01',
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss'],
+  hooks: { 'build:before': vorgabeSchreiben },
   css: ['~/assets/css/fonts.css', '~/assets/css/main.css'],
   app: {
     head: {

@@ -19,3 +19,9 @@ public/api/auth.php
 *.log
 .env
 .env.*
+
+# Vom Bauen erzeugt (aus composables/useBetrieb.ts), siehe nuxt.config.ts
+public/api/vorgabe.json
+
+# Im CMS gepflegte Basisdaten — leben nur am Server
+public/content/

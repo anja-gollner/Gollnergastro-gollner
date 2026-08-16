@@ -21,6 +21,12 @@
   .btn-dark { @apply bg-ink text-cream hover:bg-forest; }
 }
 
+/* Die seitlichen Reveal-Varianten unten starten 52px versetzt. Bis die
+   Animation gelaufen ist, ragt das über den Viewport hinaus und die Seite
+   lässt sich seitlich schieben (auf /catering gemessen: 12px).
+   `clip` statt `hidden`, damit position:sticky im Dokument intakt bleibt. */
+html, body { overflow-x: clip; }
+
 /* SSR-sicherer Reveal: nur wenn JS die Klasse setzt, wird animiert */
 .reveal-ready {
   opacity: 0;

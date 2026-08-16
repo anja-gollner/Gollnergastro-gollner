@@ -48,6 +48,26 @@ Abruf nach einem Upload neu; hier liegen sie zusätzlich vorgeneriert, damit sie
 auch ohne Imagick am Server vorhanden sind. Reiter erscheinen nur für Karten,
 die tatsächlich am Server liegen.
 
+## CMS
+Unter `/admin/` liegt ein kleines, passwortgeschütztes CMS (PHP), mit dem sich
+**Basisdaten** (Telefon, E-Mail, Adresse, Social-Profile) und die **Karten-PDFs**
+ohne Code pflegen lassen. Alles Weitere in **[CMS.md](CMS.md)**.
+
+Technisch hängt das an drei Stellen zusammen:
+
+- `composables/useBetrieb.ts` ist `reactive` — deshalb ziehen alle Stellen im Code
+  automatisch nach, ohne dass man sie einzeln anfassen müsste.
+- `plugins/stammdaten.client.ts` holt beim Laden die gespeicherten Werte vom Server.
+- `nuxt.config.ts` schreibt beim Bauen `public/api/vorgabe.json` — die Ausgangswerte,
+  die das CMS anzeigt, solange nichts überschrieben ist. Damit steht die
+  Telefonnummer weiterhin an genau **einer** Stelle im Code.
+
+## Server
+`public/.htaccess` wird mitgebaut und muss mit hochgeladen werden (FileZilla blendet
+Dateien mit Punkt am Anfang aus — „Versteckte Dateien anzeigen" einschalten). Sie
+erzwingt HTTPS, entfernt `www.`, liefert die eigene 404-Seite aus und schaltet
+Komprimierung sowie Caching ein.
+
 ## Stand
 Alle neun Seiten sind gebaut: Startseite, Über uns, Catering, Kantine, Gollner19,
 Anfrage, Impressum, Datenschutz, AGB. Dazu robots.txt und sitemap.xml.

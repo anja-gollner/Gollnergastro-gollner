@@ -1,0 +1,100 @@
+/* Oberfläche des Gollner-Gastro-CMS. Gleiche Bauweise wie beim
+   Schildbacherhof, nur mit dem grünen Akzent des Hauses: die Variable heißt
+   weiterhin --terracotta, damit beide Dateien vergleichbar bleiben. */
+:root{
+  --cream:#F4EFE3; --beige:#E6DBC4; --terracotta:#2C4636; --sage:#5F7355;
+  --ink:#211C15; --muted:#6F6A5E; --line:rgba(33,28,21,.14);
+  --display:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
+h1,h2,h3{font-family:var(--display);font-weight:500;margin:0}
+a{color:var(--terracotta)}
+.loading{min-height:100vh;display:grid;place-items:center;color:var(--muted)}
+
+/* Layout */
+.wrap{max-width:1040px;margin:0 auto;padding:clamp(1.2rem,4vw,2.5rem)}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  padding:1rem clamp(1.2rem,4vw,2.5rem);border-bottom:1px solid var(--line);background:rgba(244,239,227,.85);
+  backdrop-filter:blur(10px);position:sticky;top:0;z-index:10}
+.brand{font-family:var(--display);font-size:1.35rem;font-weight:600;display:flex;align-items:center;gap:.6rem}
+.brand small{font-family:var(--sans);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terracotta)}
+.topbar .actions{display:flex;gap:.5rem;flex-wrap:wrap}
+
+/* Auth-Karte */
+.auth{min-height:100vh;display:grid;place-items:center;padding:1.2rem}
+.auth .card{width:100%;max-width:420px}
+.eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--terracotta);margin:0 0 .6rem}
+
+/* Karten & Felder */
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.5rem;box-shadow:0 18px 40px -28px rgba(33,28,21,.4)}
+.section-title{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin:2.2rem 0 1rem}
+.section-title h2{font-size:clamp(1.4rem,3vw,2rem)}
+label{display:block;font-size:.82rem;font-weight:500;margin:0 0 .35rem}
+/* Checkbox mit Text daneben statt darunter */
+label.inline{display:flex;align-items:center;gap:.5rem;margin:0}
+label.inline input{width:auto;flex:0 0 auto}
+.field{margin-bottom:1rem}
+input,textarea,select{width:100%;font:inherit;color:var(--ink);background:var(--cream);
+  border:1px solid var(--line);border-radius:11px;padding:.7rem .85rem;outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--terracotta)}
+textarea{min-height:96px;resize:vertical}
+.row{display:grid;gap:1rem;grid-template-columns:1fr 1fr}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+.hint{font-size:.78rem;color:var(--muted);margin:.3rem 0 0}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;font-family:var(--display);
+  font-size:.95rem;border-radius:999px;padding:.62rem 1.3rem;border:1px solid transparent;cursor:pointer;
+  transition:.2s;text-decoration:none;background:none}
+.btn-primary{background:var(--terracotta);color:var(--cream)}
+.btn-primary:hover{background:var(--ink)}
+.btn-dark{background:var(--ink);color:var(--cream)}
+.btn-dark:hover{background:var(--terracotta)}
+.btn-ghost{border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--terracotta);color:var(--terracotta)}
+.btn-sm{padding:.42rem .9rem;font-size:.85rem}
+.btn-danger{color:#9b2c0b;border-color:rgba(155,44,11,.3)}
+.btn-danger:hover{background:#9b2c0b;color:#fff;border-color:#9b2c0b}
+.btn[disabled]{opacity:.55;cursor:default}
+
+/* Event-Liste */
+.events{display:grid;gap:1rem}
+.ev{display:grid;grid-template-columns:120px 1fr auto;gap:1rem;align-items:center;
+  background:#fff;border:1px solid var(--line);border-radius:16px;padding:.8rem;overflow:hidden}
+@media(max-width:620px){.ev{grid-template-columns:80px 1fr;}.ev .ev-actions{grid-column:1/-1;justify-content:flex-start}}
+.ev .thumb{width:120px;height:78px;border-radius:10px;object-fit:cover;background:var(--beige)}
+@media(max-width:620px){.ev .thumb{width:80px;height:80px}}
+.ev h3{font-size:1.15rem}
+.ev .meta{color:var(--terracotta);font-family:var(--display);font-size:.85rem}
+.ev .sub{color:var(--sage);font-size:.85rem}
+.ev-actions{display:flex;gap:.4rem}
+.empty{color:var(--muted);font-family:var(--display);font-size:1.3rem;padding:1.5rem 0}
+
+/* Bild-Picker */
+.imgpick{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.imgpick img{width:64px;height:48px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+.imgpick select{flex:1;min-width:160px}
+
+/* Modal */
+.modal-bg{position:fixed;inset:0;background:rgba(33,28,21,.55);display:grid;place-items:start center;
+  padding:5vh 1rem;z-index:50;overflow:auto}
+.modal{width:100%;max-width:600px}
+.modal h2{margin-bottom:1.2rem}
+
+/* Toast */
+.toast{position:fixed;left:50%;bottom:1.4rem;transform:translateX(-50%);background:var(--ink);color:var(--cream);
+  padding:.75rem 1.2rem;border-radius:999px;font-size:.9rem;z-index:100;box-shadow:0 12px 30px -10px rgba(0,0,0,.5)}
+.toast.err{background:#9b2c0b}
+.err-text{color:#9b2c0b;font-size:.85rem;margin:.5rem 0 0;min-height:1em}
+
+.divider{height:1px;background:var(--line);margin:2.5rem 0}
+.muted{color:var(--muted)}
+.stack > * + *{margin-top:1.5rem}
+
+/* Das hidden-Attribut durchsetzen.
+   Die Browser-Grundregel [hidden]{display:none} ist schwächer als jede eigene
+   display-Angabe — .row{display:grid} hat sie ausgehebelt, dadurch standen im
+   Feiertags-Editor die Abweich-Zeiten auch bei „ganztägig geschlossen" da. */
+[hidden]{display:none !important}

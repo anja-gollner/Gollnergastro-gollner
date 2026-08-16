@@ -26,27 +26,30 @@ const year = new Date().getFullYear()
       <div>
         <h2 class="eyebrow-dunkel mb-4">Kontakt</h2>
         <address class="not-italic text-cream/80 leading-relaxed">
-          {{ BETRIEB.adresse.strasse }}<br>{{ BETRIEB.adresse.plz }} {{ BETRIEB.adresse.ort }}<br>
-          <a :href="'tel:' + BETRIEB.telefonRoh" class="hover:text-leaf">{{ BETRIEB.telefon }}</a><br>
-          <a :href="'mailto:' + BETRIEB.email" class="hover:text-leaf">{{ BETRIEB.email }}</a>
+          {{ BETRIEB.adresse.strasse }}<br>{{ BETRIEB.adresse.plz }} {{ BETRIEB.adresse.ort }}
+          <!-- Telefon und E-Mail als eigene Zeilen mit Polsterung statt als
+               Textzeilen: am Handy sind das die wichtigsten Tippziele, und mit
+               reiner Zeilenhöhe wären sie nur 20px hoch — zu wenig zum Treffen. -->
+          <a :href="'tel:' + BETRIEB.telefonRoh" class="block py-1.5 hover:text-leaf">{{ BETRIEB.telefon }}</a>
+          <a :href="'mailto:' + BETRIEB.email" class="block pb-1.5 hover:text-leaf">{{ BETRIEB.email }}</a>
         </address>
         <a :href="BETRIEB.route" target="_blank" rel="noopener"
-           class="mt-3 inline-flex items-center gap-1.5 text-sm text-leaf hover:text-cream transition-colors">
+           class="mt-1 inline-flex items-center gap-1.5 py-1.5 text-sm text-leaf hover:text-cream transition-colors">
           Route planen <span aria-hidden="true">→</span>
         </a>
       </div>
 
       <div>
         <h2 class="eyebrow-dunkel mb-4">Leistungen</h2>
-        <ul class="text-cream/80 leading-relaxed space-y-1.5">
+        <ul class="text-cream/80 leading-relaxed -my-1">
           <li v-for="b in BEREICHE" :key="b.slug">
-            <NuxtLink :to="'/' + b.slug" class="hover:text-leaf transition-colors">{{ b.titel }}</NuxtLink>
+            <NuxtLink :to="'/' + b.slug" class="block py-1.5 hover:text-leaf transition-colors">{{ b.titel }}</NuxtLink>
           </li>
         </ul>
 
-        <h2 class="eyebrow-dunkel mt-7 mb-3">Schwesterbetrieb</h2>
+        <h2 class="eyebrow-dunkel mt-6 mb-2">Schwesterbetrieb</h2>
         <a :href="BETRIEB.schwester.url" target="_blank" rel="noopener"
-           class="text-cream/80 hover:text-leaf transition-colors">
+           class="inline-block py-1.5 text-cream/80 hover:text-leaf transition-colors">
           {{ BETRIEB.schwester.name }} <span aria-hidden="true">↗</span>
         </a>
       </div>
@@ -54,10 +57,10 @@ const year = new Date().getFullYear()
 
     <div class="container-x py-6 border-t border-cream/15 flex flex-wrap justify-between gap-3 text-cream/50 text-[0.8rem]">
       <span>© {{ year }} {{ BETRIEB.name }}</span>
-      <span class="flex flex-wrap gap-5">
-        <NuxtLink to="/impressum" class="hover:text-leaf">Impressum</NuxtLink>
-        <NuxtLink to="/datenschutz" class="hover:text-leaf">Datenschutz</NuxtLink>
-        <NuxtLink to="/agb" class="hover:text-leaf">AGB</NuxtLink>
+      <span class="flex flex-wrap gap-5 -my-1.5">
+        <NuxtLink to="/impressum" class="py-1.5 hover:text-leaf">Impressum</NuxtLink>
+        <NuxtLink to="/datenschutz" class="py-1.5 hover:text-leaf">Datenschutz</NuxtLink>
+        <NuxtLink to="/agb" class="py-1.5 hover:text-leaf">AGB</NuxtLink>
       </span>
     </div>
   </footer>

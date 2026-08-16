@@ -1,0 +1,88 @@
+# Serverkonfiguration für klassisches Apache-Hosting (world4you & Co.).
+# Diese Datei wird beim Bauen mit nach .output/public kopiert und muss beim
+# Hochladen mit in den Webroot. Achtung: FileZilla blendet Dateien mit einem
+# Punkt am Anfang standardmäßig aus — unter „Server → Versteckte Dateien
+# anzeigen" einschalten, sonst fehlt sie am Server.
+
+# ── Eigene Fehlerseite ───────────────────────────────────────────────
+# Ohne diese Zeile zeigt Apache bei einer falschen Adresse seine eigene,
+# nackte Fehlerseite statt der gestalteten 404-Seite der Website.
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # ── Eine einzige Adresse ───────────────────────────────────────────
+  # HTTPS erzwingen und www entfernen. Beides muss sein, damit Google die
+  # Seite nicht als mehrere gleiche Seiten unter verschiedenen Adressen
+  # bewertet. Die zweite Bedingung greift bei Hostern mit vorgelagertem
+  # Proxy, wo %{HTTPS} auch bei einer HTTPS-Anfrage „off" meldet.
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+  # ── Adressen ohne Schrägstrich am Ende ─────────────────────────────
+  # Nuxt legt jede Seite als Ordner mit index.html ab. Apache würde von
+  # /kontakt automatisch auf /kontakt/ umleiten — die Sitemap und das
+  # canonical-Tag der Seite nennen aber die Form ohne Schrägstrich.
+  # Statt umzuleiten liefern wir die Datei direkt aus, dann stimmen
+  # Adresse und canonical überein.
+  DirectorySlash Off
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_FILENAME}/index.html -f
+  RewriteRule ^(.+?)/?$ /$1/index.html [L]
+</IfModule>
+
+# ── Komprimierung ────────────────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml \
+    application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# ── Caching ──────────────────────────────────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Alles unter /_nuxt/ trägt den Inhalts-Hash im Dateinamen; ändert sich
+  # etwas, ändert sich der Name. Darum bedenkenlos ein Jahr.
+  ExpiresByType text/css                "access plus 1 year"
+  ExpiresByType application/javascript  "access plus 1 year"
+  ExpiresByType font/woff2              "access plus 1 year"
+
+  ExpiresByType image/jpeg              "access plus 30 days"
+  ExpiresByType image/png               "access plus 30 days"
+  ExpiresByType image/webp              "access plus 30 days"
+  ExpiresByType image/svg+xml           "access plus 30 days"
+
+  # HTML und die vom CMS gepflegten JSON-Dateien nie zwischenspeichern —
+  # sonst sehen Gäste nach einer Änderung tagelang den alten Stand.
+  ExpiresByType text/html               "access plus 0 seconds"
+  ExpiresByType application/json        "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  # Kein Framing durch fremde Seiten (Clickjacking)
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Die Speisekarten-PDFs werden per ?v=… frisch angefordert, wenn sie sich
+  # ändern; ohne diese Regel liefert mancher Proxy trotzdem die alte Datei.
+  <FilesMatch "\.(json|pdf)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# ── Zugriffsschutz ───────────────────────────────────────────────────
+# Sicherheitsnetz: auth.php wird vom Server ohnehin als PHP ausgeführt und
+# nie im Klartext ausgeliefert. Falls PHP an dieser Stelle einmal nicht
+# greift, stünde der Passwort-Hash sonst offen im Netz.
+<Files "auth.php">
+  Require all denied
+</Files>
+
+# Verzeichnisauflistung abschalten
+Options -Indexes

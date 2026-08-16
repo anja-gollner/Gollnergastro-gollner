@@ -41,7 +41,10 @@ export function useSeo(o: SeoOptionen) {
 // Schildbacherhof kein "Restaurant" mit Öffnungszeiten, sondern ein
 // Dienstleister — deshalb FoodService statt Restaurant.
 export function useFirmaSchema() {
-  const schema = {
+  // Als computed: ändert jemand im CMS Telefonnummer oder Adresse, stimmt
+  // sonst der Datenblock für Google bis zum nächsten Hochladen nicht mehr
+  // mit dem überein, was auf der Seite steht.
+  const schema = computed(() => ({
     '@context': 'https://schema.org',
     '@type': 'FoodEstablishment',
     additionalType: 'https://schema.org/FoodService',
@@ -75,7 +78,7 @@ export function useFirmaSchema() {
         itemOffered: { '@type': 'Service', name: b.titel, description: b.text }
       }))
     }
-  }
+  }))
 
-  useHead({ script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(schema) }] })
+  useHead({ script: [{ type: 'application/ld+json', innerHTML: computed(() => JSON.stringify(schema.value)) }] })
 }
