@@ -22,15 +22,15 @@ const stationen = [
 ]
 
 // Auf der Startseite dieselbe Abstufung wie auf /ueber-uns — Peter und Florian
-// mit Bild, Julia ruhig darunter. Die Bilder sind hier aber bewusst flacher
-// (3:2 statt 3:4) und die Texte kürzer: die Startseite ist der Anriss,
-// die ganze Geschichte steht auf der Unterseite.
+// mit Bild, Julia ruhig darunter. Die Karten sind hier aber bewusst flacher
+// (4:3 statt 3:4, 440 statt 779 px hoch) und die Texte kürzer: die Startseite
+// ist der Anriss, die ganze Geschichte steht auf der Unterseite.
 const koepfe = [
   { name: 'Peter Gollner',   rolle: 'Geschäftsführung',
-    bild: '/images/team/peter-gollner.jpg', pos: '49% 20%',
+    bild: '/images/team/peter-gollner.jpg', pos: '50% 14%',
     text: 'Gründer und unternehmerisches Herzstück. Über zwei Jahrzehnte Erfahrung, geprägt durch den Familienbetrieb — verantwortet die strategische Ausrichtung.' },
   { name: 'Florian Gollner', rolle: 'Prokurist & Küchenchef',
-    bild: '/images/team/florian-gollner.jpg', pos: '45% 20%',
+    bild: '/images/team/florian-gollner.jpg', pos: '50% 14%',
     text: 'Küchenchef aus Leidenschaft, aufgewachsen in der Welt des Schildbacherhofs. Bodenständige Küche mit klarem Anspruch.' }
 ]
 
@@ -126,9 +126,9 @@ const imHintergrund = {
           <article v-for="(p, i) in koepfe" :key="p.name" v-reveal="i * 100"
                    class="group overflow-hidden rounded-2xl border border-cream/15 bg-cream/[0.03]
                           transition-all duration-500 hover:border-leaf/40 hover:-translate-y-1">
-            <!-- 4:3 statt 3:2: die Originalfotos sind selbst 3:2, bei gleichem
-                 Verhältnis würde gar nicht beschnitten und die beiden stünden
-                 verloren im Raum. Auf /ueber-uns ist es 3:4, also deutlich höher. -->
+            <!-- Die Bilddateien sind 3:4; in der flacheren 4:3-Karte wird
+                 oben und unten beschnitten, deshalb schiebt objectPosition
+                 den Ausschnitt nach oben auf die Gesichter. -->
             <div class="relative aspect-[4/3] overflow-hidden">
               <img :src="p.bild" :alt="`${p.name}, ${p.rolle}`" :style="{ objectPosition: p.pos }"
                    class="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]" />

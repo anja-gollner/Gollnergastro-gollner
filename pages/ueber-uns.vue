@@ -30,12 +30,12 @@ const koepfe = [
   { name: 'Peter Gollner',
     rolle: 'Geschäftsführung',
     bild: '/images/team/peter-gollner.jpg',
-    pos: '49% 22%',
+    pos: '50% 50%',
     text: 'Gründer und unternehmerisches Herzstück der Gollner Gastro GmbH. Mit über zwei Jahrzehnten Erfahrung in der Gastronomie — geprägt durch den Familienbetrieb Schildbacherhof — hat er im Dezember 2025 den nächsten Schritt gewagt und ein eigenständiges Unternehmen aufgebaut. Er verantwortet die strategische Ausrichtung und hält alle Fäden zusammen, damit Qualität und Verlässlichkeit in jedem Bereich spürbar bleiben.' },
   { name: 'Florian Gollner',
     rolle: 'Prokurist & Küchenchef',
     bild: '/images/team/florian-gollner.jpg',
-    pos: '45% 22%',
+    pos: '50% 50%',
     text: 'Küchenchef aus Leidenschaft. Aufgewachsen in der Welt des Schildbacherhofs, hat er sein Handwerk von der Pike auf gelernt und zu einem unverwechselbaren Stil weiterentwickelt: bodenständige Küche mit klarem Anspruch. Als Prokurist trägt er auch unternehmerische Verantwortung — und steht für beide Häuser hinter dem Herd.' }
 ]
 
