@@ -49,7 +49,17 @@ auch ohne Imagick am Server vorhanden sind. Reiter erscheinen nur für Karten,
 die tatsächlich am Server liegen.
 
 ## Stand
-- **Fertig:** Design-System, Navigation, Footer, Startseite
-- **Offen:** Über uns, Catering, Kantine, Gollner19, Wochenmenü, Anfrage,
-  Impressum, Datenschutz, AGB — aktuell Platzhalterseiten
-- **Offen:** Anfrageformular (Backend wie beim Schildbacherhof: `api/contact.php`)
+Alle neun Seiten sind gebaut: Startseite, Über uns, Catering, Kantine, Gollner19,
+Anfrage, Impressum, Datenschutz, AGB. Dazu robots.txt und sitemap.xml.
+
+Das Anfrageformular schickt an `api/contact.php` (Empfänger und Absender oben in
+der Datei einstellbar). **Vor dem Livegang eine echte Testanfrage abschicken** und
+prüfen, ob sie im Postfach landet — nicht nur im Spam.
+
+Die Seite läuft laut bisheriger Datenschutzerklärung bei **World4You**; klassisches
+Hosting mit PHP genügt, Node wird nicht gebraucht.
+
+### Offen
+- echte Gollner19-Karten (aktuell die des Schildbacherhofs)
+- eigene Fotos für Über uns und Anfrage — dort greifen wir auf die vorhandenen zurück
+- Texte der AGB sind aus der WordPress-Seite übernommen und nicht anwaltlich geprüft

@@ -43,11 +43,13 @@ const team = [
         <div class="grid lg:grid-cols-[1.4fr_1fr] gap-10 lg:gap-16">
           <div>
             <p v-reveal class="eyebrow-dunkel mb-5">Unsere Geschichte</p>
-            <p v-reveal class="font-display text-[clamp(1.8rem,4.2vw,3.2rem)] leading-snug">
+            <!-- Als h2, nicht als Absatz: das ist die Überschrift dieses
+                 Abschnitts. Sonst springt die Gliederung von h1 direkt auf h3. -->
+            <h2 v-reveal class="font-display text-[clamp(1.8rem,4.2vw,3.2rem)] leading-snug">
               Was als Familientradition im Schildbacherhof begann, lebt seit Dezember 2025
               als Gollner Gastro weiter — <span class="text-leaf">mit denselben Werten
               und mehr Reichweite.</span>
-            </p>
+            </h2>
             <NuxtLink to="/ueber-uns" v-reveal:200 class="mt-8 inline-flex items-center gap-2 font-display text-leaf hover:gap-3 transition-all">
               Die ganze Geschichte <span>→</span>
             </NuxtLink>
