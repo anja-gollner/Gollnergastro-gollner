@@ -23,7 +23,7 @@ const stationen = [
 
 // Auf der Startseite dieselbe Abstufung wie auf /ueber-uns — Peter und Florian
 // mit Bild, Julia ruhig darunter. Die Karten sind hier aber bewusst flacher
-// (4:3 statt 3:4, 440 statt 779 px hoch) und die Texte kürzer: die Startseite
+// (4:3 statt 4:5) und die Texte kürzer: die Startseite
 // ist der Anriss, die ganze Geschichte steht auf der Unterseite.
 const koepfe = [
   { name: 'Peter Gollner',   rolle: 'Geschäftsführung',
@@ -126,9 +126,9 @@ const imHintergrund = {
           <article v-for="(p, i) in koepfe" :key="p.name" v-reveal="i * 100"
                    class="group overflow-hidden rounded-2xl border border-cream/15 bg-cream/[0.03]
                           transition-all duration-500 hover:border-leaf/40 hover:-translate-y-1">
-            <!-- Die Bilddateien sind 3:4; in der flacheren 4:3-Karte wird
-                 oben und unten beschnitten, deshalb schiebt objectPosition
-                 den Ausschnitt nach oben auf die Gesichter. -->
+            <!-- Die Bilddateien sind knapp querformatig (2000x1800); in der
+                 flacheren 4:3-Karte wird oben und unten beschnitten, deshalb
+                 schiebt objectPosition den Ausschnitt auf die Gesichter. -->
             <div class="relative aspect-[4/3] overflow-hidden">
               <img :src="p.bild" :alt="`${p.name}, ${p.rolle}`" :style="{ objectPosition: p.pos }"
                    class="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]" />

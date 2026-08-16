@@ -117,7 +117,10 @@ const imHintergrund = {
                    class="group overflow-hidden rounded-2xl bg-ink text-cream
                           transition-all duration-500 hover:-translate-y-1.5
                           hover:shadow-[0_40px_75px_-38px_rgba(33,28,21,.65)]">
-            <div class="relative aspect-[4/5] sm:aspect-[3/4] overflow-hidden">
+            <!-- 4:5 statt 3:4: die Bilddatei ist leicht querformatig, in einer
+                 schmaleren Karte würde seitlich so viel wegfallen, dass der
+                 weite Ausschnitt wieder aufgehoben wäre. -->
+            <div class="relative aspect-[4/5] overflow-hidden">
               <img :src="p.bild" :alt="`${p.name}, ${p.rolle}`" :style="{ objectPosition: p.pos }"
                    class="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]" />
               <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/25 to-transparent"></div>
