@@ -21,11 +21,24 @@ const stationen = [
   { jahr: 'Heute', titel: 'Zwei Marken, eine Familie', text: 'Beide Häuser bestehen eigenständig — mit gemeinsamen Wurzeln und Familienmitgliedern an der Spitze.' }
 ]
 
-const team = [
-  { name: 'Peter Gollner',  rolle: 'Geschäftsführung', text: 'Gründer und unternehmerisches Herzstück. Über zwei Jahrzehnte Erfahrung, geprägt durch den Familienbetrieb — verantwortet die strategische Ausrichtung.' },
-  { name: 'Florian Gollner', rolle: 'Prokurist & Küchenchef', text: 'Küchenchef aus Leidenschaft, aufgewachsen in der Welt des Schildbacherhofs. Bodenständige Küche mit klarem Anspruch.' },
-  { name: 'Julia Neuhold',  rolle: 'Assistenz der Geschäftsführung & Prokuristin', text: 'Erste Ansprechperson für Buchungen, Catering-Anfragen und die gesamte organisatorische Koordination.' }
+// Auf der Startseite dieselbe Abstufung wie auf /ueber-uns — Peter und Florian
+// mit Bild, Julia ruhig darunter. Die Bilder sind hier aber bewusst flacher
+// (3:2 statt 3:4) und die Texte kürzer: die Startseite ist der Anriss,
+// die ganze Geschichte steht auf der Unterseite.
+const koepfe = [
+  { name: 'Peter Gollner',   rolle: 'Geschäftsführung',
+    bild: '/images/team/peter-gollner.jpg', pos: '49% 20%',
+    text: 'Gründer und unternehmerisches Herzstück. Über zwei Jahrzehnte Erfahrung, geprägt durch den Familienbetrieb — verantwortet die strategische Ausrichtung.' },
+  { name: 'Florian Gollner', rolle: 'Prokurist & Küchenchef',
+    bild: '/images/team/florian-gollner.jpg', pos: '45% 20%',
+    text: 'Küchenchef aus Leidenschaft, aufgewachsen in der Welt des Schildbacherhofs. Bodenständige Küche mit klarem Anspruch.' }
 ]
+
+const imHintergrund = {
+  name: 'Julia Neuhold',
+  rolle: 'Assistenz der Geschäftsführung & Prokuristin',
+  text: 'Erste Ansprechperson für Buchungen, Catering-Anfragen und die gesamte organisatorische Koordination.'
+}
 </script>
 
 <template>
@@ -109,15 +122,40 @@ const team = [
           Die Menschen hinter <span class="text-leaf">Gollner Gastro.</span>
         </h2>
 
-        <div class="grid gap-6 md:grid-cols-3">
-          <article v-for="(p, i) in team" :key="p.name" v-reveal="i * 90"
-                   class="rounded-2xl border border-cream/15 bg-cream/[0.03] p-7
-                          transition-colors duration-500 hover:border-leaf/40">
-            <h3 class="font-display text-2xl leading-tight">{{ p.name }}</h3>
-            <p class="eyebrow-dunkel mt-1.5 mb-3">{{ p.rolle }}</p>
-            <p class="text-cream/70 leading-relaxed text-[0.95rem]">{{ p.text }}</p>
+        <div class="grid gap-6 md:grid-cols-2">
+          <article v-for="(p, i) in koepfe" :key="p.name" v-reveal="i * 100"
+                   class="group overflow-hidden rounded-2xl border border-cream/15 bg-cream/[0.03]
+                          transition-all duration-500 hover:border-leaf/40 hover:-translate-y-1">
+            <!-- 4:3 statt 3:2: die Originalfotos sind selbst 3:2, bei gleichem
+                 Verhältnis würde gar nicht beschnitten und die beiden stünden
+                 verloren im Raum. Auf /ueber-uns ist es 3:4, also deutlich höher. -->
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <img :src="p.bild" :alt="`${p.name}, ${p.rolle}`" :style="{ objectPosition: p.pos }"
+                   class="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]" />
+              <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent"></div>
+            </div>
+            <div class="p-6 md:p-7">
+              <h3 class="font-display text-2xl leading-tight">{{ p.name }}</h3>
+              <p class="eyebrow-dunkel mt-1.5 mb-3">{{ p.rolle }}</p>
+              <p class="text-cream/70 leading-relaxed text-[0.95rem]">{{ p.text }}</p>
+            </div>
           </article>
         </div>
+
+        <!-- Julia ohne Porträt, wie auf /ueber-uns auch -->
+        <article v-reveal:200 class="mt-6 rounded-2xl border border-cream/15 bg-cream/[0.03] p-6 md:p-7
+                                     md:flex md:items-baseline md:gap-8">
+          <div class="md:w-72 md:shrink-0">
+            <h3 class="font-display text-xl leading-tight">{{ imHintergrund.name }}</h3>
+            <p class="eyebrow-dunkel mt-1.5">{{ imHintergrund.rolle }}</p>
+          </div>
+          <p class="text-cream/70 leading-relaxed text-[0.95rem] mt-3 md:mt-0">{{ imHintergrund.text }}</p>
+        </article>
+
+        <NuxtLink to="/ueber-uns" v-reveal:260
+                  class="mt-8 inline-flex items-center gap-2 font-display text-leaf hover:gap-3 transition-all">
+          Mehr über das Team <span>→</span>
+        </NuxtLink>
       </div>
     </section>
 
