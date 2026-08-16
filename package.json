@@ -1,0 +1,17 @@
+{
+  "name": "gollner-gastro-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "dev:clean": "rm -rf .nuxt node_modules/.vite node_modules/.cache && nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.12.2",
+    "nuxt": "^3.13.0"
+  }
+}

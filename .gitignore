@@ -1,0 +1,21 @@
+# Nuxt
+.nuxt/
+.output/
+.nitro/
+.cache/
+dist
+
+# Abhängigkeiten
+node_modules/
+
+# Rohmaterial (Originalfotos, Logos) — gehört nicht ins Repo
+_quellmaterial/
+
+# CMS-Daten, die nur am Server leben (siehe CMS.md)
+public/api/auth.php
+
+# System
+.DS_Store
+*.log
+.env
+.env.*
