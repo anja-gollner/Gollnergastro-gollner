@@ -34,6 +34,20 @@ als die Innenaufnahmen des Schildbacherhofs — deshalb sind Hero und Karten hie
 kräftiger abgedunkelt (`brightness` + stärkere Verläufe). Beim Austausch der Fotos
 diese Werte prüfen.
 
+## Favicon
+GG-Monogramm cremefarben auf Tannengrün (`public/favicon.ico`, `favicon-16/32.png`,
+`apple-touch-icon.png`). Bewusst eine grüne Kachel — so ist der Tab im Browser vom
+Schildbacherhof (cremefarbene Kachel) zu unterscheiden.
+
+## Speisekarten
+Aktuell liegen unter `public/pdf/` **vorläufig die Karten des Schildbacherhofs**
+(`speisekarte.pdf`, `wochenmenue.pdf`) — bis die echten Gollner19-Karten da sind.
+
+Die Seitenbilder unter `public/pdf/seiten/` erzeugt `api/menus.php` beim ersten
+Abruf nach einem Upload neu; hier liegen sie zusätzlich vorgeneriert, damit sie
+auch ohne Imagick am Server vorhanden sind. Reiter erscheinen nur für Karten,
+die tatsächlich am Server liegen.
+
 ## Stand
 - **Fertig:** Design-System, Navigation, Footer, Startseite
 - **Offen:** Über uns, Catering, Kantine, Gollner19, Wochenmenü, Anfrage,

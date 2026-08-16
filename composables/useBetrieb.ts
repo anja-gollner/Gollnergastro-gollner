@@ -45,7 +45,7 @@ export const BETRIEB = {
 
   social: [
     { name: 'Instagram', url: 'https://www.instagram.com/gollnergastro/' },
-    { name: 'Facebook',  url: 'https://www.facebook.com/gollnergastro' }
+    { name: 'Facebook',  url: 'https://www.facebook.com/profile.php?id=61588468455254' }
   ],
 
   // Das Schwesterunternehmen — beide bestehen eigenständig nebeneinander
