@@ -44,26 +44,30 @@ const dark = computed(() => scrolled.value && !open.value)
       : 'bg-transparent border-b border-transparent'"
   >
     <nav class="container-x flex items-center justify-between" :class="(scrolled && !open) ? 'py-3' : 'py-5'">
-      <!-- Logo: Monogramm + Wortmarke. Zwei Fassungen, weil das Monogramm
-           einfarbig ist und je nach Untergrund die Farbe wechseln muss. -->
+      <!-- Echte Wortmarke aus dem Original-Logo, in Monogramm und Schriftzug
+           zerlegt und nebeneinander gesetzt (das Original ist gestapelt und
+           wäre in der Leiste zu hoch). Je eine Fassung für hellen und dunklen
+           Untergrund, weil beide Teile einfarbig sind. -->
       <NuxtLink
         to="/"
-        class="relative z-[60] flex items-center gap-3 transition-opacity duration-300"
+        class="relative z-[60] flex items-center gap-2.5 md:gap-3 transition-opacity duration-300"
         :class="open ? 'opacity-0 pointer-events-none' : 'opacity-100'"
         :aria-hidden="open ? 'true' : undefined"
         :tabindex="open ? -1 : undefined"
         aria-label="Gollner Gastro — Startseite"
       >
         <img
-          :src="dark ? '/images/gg-tanne.png' : '/images/gg-creme.png'"
+          :src="dark ? '/images/gg-monogramm-tanne.png' : '/images/gg-monogramm-creme.png'"
           alt=""
           class="w-auto transition-all duration-500"
           :class="dark ? 'h-8 md:h-9' : 'h-10 md:h-12'"
         />
-        <span class="leading-none transition-colors duration-500" :class="dark ? 'text-ink' : 'text-cream'">
-          <span class="block font-display tracking-wide" :class="dark ? 'text-[1.05rem]' : 'text-[1.15rem]'">GOLLNER</span>
-          <span class="block text-[0.55rem] tracking-[0.34em] opacity-70">GASTRO GMBH</span>
-        </span>
+        <img
+          :src="dark ? '/images/gg-wortmarke-tanne.png' : '/images/gg-wortmarke-creme.png'"
+          alt="Gollner Gastro GmbH"
+          class="w-auto transition-all duration-500"
+          :class="dark ? 'h-6 md:h-7' : 'h-7 md:h-9'"
+        />
       </NuxtLink>
 
       <!-- Desktop-Links -->
@@ -131,7 +135,7 @@ const dark = computed(() => scrolled.value && !open.value)
               Anfrage senden →
             </NuxtLink>
             <NuxtLink to="/" class="mt-6 inline-block" @click="open = false" aria-label="Gollner Gastro — Startseite">
-              <img src="/images/gg-creme.png" alt="Gollner Gastro" class="h-10 w-auto opacity-70 transition-opacity hover:opacity-100" />
+              <img src="/images/logo-voll-creme.png" alt="Gollner Gastro GmbH" class="h-20 w-auto opacity-70 transition-opacity hover:opacity-100" />
             </NuxtLink>
           </div>
         </div>

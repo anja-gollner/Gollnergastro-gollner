@@ -6,12 +6,8 @@ const year = new Date().getFullYear()
   <footer class="bg-ink text-cream">
     <div class="container-x py-16 grid gap-10 md:grid-cols-4">
       <div class="md:col-span-2">
-        <NuxtLink to="/" class="inline-flex items-center gap-3 mb-5" aria-label="Gollner Gastro — Startseite">
-          <img src="/images/gg-creme.png" alt="" class="h-14 md:h-16 w-auto" />
-          <span class="leading-none">
-            <span class="block font-display text-2xl tracking-wide">GOLLNER</span>
-            <span class="block text-[0.6rem] tracking-[0.34em] text-cream/60">GASTRO GMBH</span>
-          </span>
+        <NuxtLink to="/" class="inline-block mb-6" aria-label="Gollner Gastro — Startseite">
+          <img src="/images/logo-voll-creme.png" alt="Gollner Gastro GmbH" class="h-28 md:h-32 w-auto" />
         </NuxtLink>
         <p class="text-cream/60 max-w-sm leading-relaxed">
           Catering, Betriebsverpflegung und Golfrestaurant aus Hartberg.

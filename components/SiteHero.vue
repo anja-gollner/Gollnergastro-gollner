@@ -12,7 +12,7 @@
 
     <!-- Monogramm als grosses, ruhiges Wasserzeichen — greift die Marke auf,
          ohne mit der Schrift zu konkurrieren -->
-    <img src="/images/gg-creme.png" alt="" aria-hidden="true"
+    <img src="/images/gg-monogramm-creme.png" alt="" aria-hidden="true"
          class="pointer-events-none select-none absolute -right-12 top-1/2 -translate-y-1/2
                 h-[70vh] w-auto opacity-[0.05] hidden md:block" />
 
