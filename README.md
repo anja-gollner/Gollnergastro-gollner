@@ -61,5 +61,6 @@ Hosting mit PHP genügt, Node wird nicht gebraucht.
 
 ### Offen
 - echte Gollner19-Karten (aktuell die des Schildbacherhofs)
-- eigene Fotos für Über uns und Anfrage — dort greifen wir auf die vorhandenen zurück
+- Porträt von Julia Neuhold (steht bewusst ohne Foto im Hintergrund)
+- eigene Fotos für Catering und Anfrage — dort greifen wir auf die vorhandenen zurück
 - Texte der AGB sind aus der WordPress-Seite übernommen und nicht anwaltlich geprüft
