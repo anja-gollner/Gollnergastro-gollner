@@ -51,19 +51,25 @@ function seiten_erzeugen(string $key, string $pdf): bool {
     $im->readImage($pdf);
     $im = $im->coalesceImages();
 
-    $i = 0;
-    foreach ($im as $seite) {
-      if (++$i > MAX_SEITEN) break;
+    // Seite für Seite als eigenes Objekt herauslösen. Nicht über das
+    // Dokument iterieren und flattenImages() aufrufen: das legt ALLE Seiten
+    // übereinander (obenauf die letzte) und verstellt dabei den Zeiger der
+    // Schleife — so entstanden zwölfmal dieselbe letzte Seite.
+    $anzahl = min($im->getNumberImages(), MAX_SEITEN);
+    for ($i = 0; $i < $anzahl; $i++) {
+      $im->setIteratorIndex($i);
+      $seite = $im->getImage();
       $seite->setImageBackgroundColor('white');
-      $seite = $seite->flattenImages();    // Transparenz auf Weiß legen
+      $seite->setImageAlphaChannel(Imagick::ALPHACHANNEL_REMOVE); // Transparenz auf Weiß
       $seite->setImageFormat('jpeg');
       $seite->setImageCompressionQuality(82);
       $seite->thumbnailImage(1400, 0);     // Breite 1400 px, Höhe proportional
       $seite->stripImage();
-      $seite->writeImage(SEITEN_DIR . '/' . $key . '-' . $i . '.jpg');
+      $seite->writeImage(SEITEN_DIR . '/' . $key . '-' . ($i + 1) . '.jpg');
+      $seite->clear();
     }
     $im->clear();
-    return $i > 0;
+    return $anzahl > 0;
   } catch (Throwable $e) {
     return false;
   }
